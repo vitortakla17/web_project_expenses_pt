@@ -39,11 +39,11 @@ const expensesList = document.querySelector(".expenses__list");
 const expenseTemplate = document.querySelector("#expense-template");
 
 const categoryNames = {
-  groceries: "Comida",
-  restaurants: "Comer fuera",
-  subscriptions: "Suscripciones",
+  groceries: "Mercado",
+  restaurants: "Restaurantes",
+  subscriptions: "Assinaturas",
   transport: "Transporte",
-  home: "Hogar",
+  home: "Casa",
 };
 
 function openModal() {
