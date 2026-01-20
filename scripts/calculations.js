@@ -2,13 +2,13 @@ let budgetValue = 0;
 let totalExpensesValue = 0;
 
 let expenseEntries = [
-    // ["groceries", 33],
-    // ["restaurants", 50],
-    // ["transport", 12],
-    // ["home", 70],
-    // ["subscriptions", 14],
-    // ["groceries", 28],
-    // ["subscriptions", 12]
+    ["groceries", 33],
+    ["restaurants", 50],
+    ["transport", 12],
+    ["home", 70],
+    ["subscriptions", 14],
+    ["groceries", 28],
+    ["subscriptions", 12]
 ]
 
 for (let i = 0; i < expenseEntries.length; i++) {
@@ -40,4 +40,39 @@ function updateBalanceColor() {
     } else {
         balanceColor = "green";
     }
+}
+
+function calculateCategoryExpenses(category) {
+    let categoryExpense = 0;
+    for (let i = 0; i < expenseEntries.length; i++) {
+        if (category === expenseEntries[i][0]) {
+            categoryExpense += expenseEntries[i][1];
+        }
+    }
+    return categoryExpense;
+}
+
+function calculateLargestCategory() {
+    const categories = ["groceries", "restaurants", "transport", "home", "subscriptions"]
+    const categoriesTotals = [];
+
+    for (let i = 0; i < categories.length; i++) {
+        const categoryName = categories[i];
+        const categoryTotal = calculateCategoryExpenses(categoryName);
+        categoriesTotals.push([categoryName, categoryTotal]);
+    }
+
+    let maxIndex = 0;
+
+    for (let i = 1; i < categoriesTotals.length; i++) {
+    if (categoriesTotals[i][1] > categoriesTotals[maxIndex][1]) {
+        maxIndex = i;
+        }
+    }
+    return categoriesTotals[maxIndex][0];
+}
+
+function addExpenseEntry (expenseEntry) {
+    expenseEntries.push (expenseEntry);
+    totalExpensesValue += expenseEntry[1];
 }
