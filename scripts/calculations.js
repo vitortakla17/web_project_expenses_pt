@@ -1,5 +1,4 @@
 let budgetValue = 0;
-let totalExpensesValue = 0;
 
 let expenseEntries = [
     ["groceries", 33],
@@ -11,10 +10,9 @@ let expenseEntries = [
     ["subscriptions", 12]
 ]
 
-for (let i = 0; i < expenseEntries.length; i++) {
-    totalExpensesValue += expenseEntries[i][1];
-    console.log("Despesas totais: " + totalExpensesValue);
-}
+let totalExpensesValue = expenseEntries.reduce((total, expense) => {
+    return total + expense[1];
+}, 0);
 
 function calculateAverageExpense() {
     if (expenseEntries.length === 0) {
@@ -73,6 +71,21 @@ function calculateLargestCategory() {
 }
 
 function addExpenseEntry (expenseEntry) {
+    if (!Array.isArray(expenseEntry) || expenseEntry.length !== 2) {
+        console.log("Erro: expenseEntry deve ser um array com 2 elementos");
+        return;
+    }
+    
+    if (typeof expenseEntry[1] !== 'number') {
+        console.log("Erro: o valor deve ser um número");
+        return;
+    }
+    
+    if (expenseEntry[1] <= 0) {
+        console.log("Erro: o valor deve ser positivo");
+        return;
+    }
+
     expenseEntries.push (expenseEntry);
     totalExpensesValue += expenseEntry[1];
 }
